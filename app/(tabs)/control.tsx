@@ -150,6 +150,11 @@ export default function ControlScreen() {
         }
     };
 
+    // Función para navegar a la pantalla de reportes
+    const navigateToReportes = () => {
+        router.push(`/reporte?token=${token}`);  // Pasamos el token como parámetro
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -240,6 +245,14 @@ export default function ControlScreen() {
                     <Text style={styles.buttonText}>APAGAR</Text>
                 </TouchableOpacity>
             </View>
+
+            {/* Botón para ir a Reportes */}
+            <TouchableOpacity
+                style={styles.button}
+                onPress={navigateToReportes}
+            >
+                <Text style={styles.buttonText}>IR A REPORTES</Text>
+            </TouchableOpacity>
         </View>
     );
 }
@@ -248,78 +261,51 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
-        backgroundColor: '#f5f5f5',
     },
     header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 30,
-        marginTop: 40,
     },
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#333',
     },
     logoutButton: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#FFF',
-        padding: 10,
-        borderRadius: 8,
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.1,
-        shadowRadius: 3.84,
-        elevation: 5,
     },
     logoutText: {
-        color: '#FF3B30',
         marginLeft: 8,
         fontSize: 16,
+        color: '#FF3B30',
     },
     statusContainer: {
         marginVertical: 20,
     },
     statusText: {
         fontSize: 18,
-        color: '#333',
     },
     statusValue: {
         fontWeight: 'bold',
     },
     buttonContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginVertical: 20,
+        justifyContent: 'space-between',
+        marginVertical: 10,
     },
     button: {
-        padding: 15,
-        borderRadius: 8,
-        width: 120,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#4CAF50',
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.1,
-        shadowRadius: 3.84,
-        elevation: 5,
+        backgroundColor: '#007BFF',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 5,
     },
     buttonText: {
-        color: '#fff',
-        fontSize: 18,
-        fontWeight: 'bold',
+        color: 'white',
+        fontSize: 16,
     },
     activeButton: {
-        backgroundColor: '#FF9800',
+        backgroundColor: '#00CC66',
     },
     inactiveButton: {
         backgroundColor: '#FF3B30',
@@ -331,10 +317,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
     modalContainer: {
-        backgroundColor: '#fff',
+        backgroundColor: 'white',
         padding: 20,
         borderRadius: 10,
-        width: '80%',
         alignItems: 'center',
     },
     modalTitle: {
@@ -343,18 +328,17 @@ const styles = StyleSheet.create({
     },
     modalButtons: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
-        width: '100%',
+        justifyContent: 'space-between',
     },
     modalButton: {
-        padding: 10,
-        borderRadius: 8,
-        backgroundColor: '#FF3B30',
+        backgroundColor: '#007BFF',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 5,
         marginHorizontal: 10,
     },
     modalButtonText: {
-        color: '#fff',
+        color: 'white',
         fontSize: 16,
-        fontWeight: 'bold',
     },
 });

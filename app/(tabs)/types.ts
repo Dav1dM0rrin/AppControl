@@ -1,7 +1,5 @@
-// types.ts
 export type RootStackParamList = {
   Login: undefined;
-  Control: {
-    token: string;
-  };
+  Control: { token: string };
+  Reporte: undefined;
 };
