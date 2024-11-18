@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, FlatList, ActivityIndicator, Alert, Button } fr
 import axios from 'axios';
 import { useLocalSearchParams } from 'expo-router';
 import * as FileSystem from 'expo-file-system';
-import * as Sharing from 'expo-sharing';  // Importamos expo-sharing para compartir archivos
 
 const API_URL = 'https://api-control-motor.onrender.com';
 
@@ -17,9 +16,9 @@ interface Lectura {
 }
 
 export default function ReportesScreen() {
-    const [lecturas, setLecturas] = useState<Lectura[]>([]);
+    const [lecturas, setLecturas] = useState<Lectura[]>([]);  // Usamos la interfaz Lectura
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const [error, setError] = useState<string | null>(null);  // Definir el tipo de error
     const [fileUri, setFileUri] = useState<string | null>(null); // Para guardar la URI del archivo descargado
     const { token } = useLocalSearchParams();
 
@@ -43,7 +42,7 @@ export default function ReportesScreen() {
         fetchLecturas();
     }, [token]);
 
-    const renderItem = ({ item }: { item: Lectura }) => (
+    const renderItem = ({ item }: { item: Lectura }) => (  // Definimos el tipo de item
         <View style={styles.item}>
             <Text style={styles.text}>ID Lectura: {item.id_lectura}</Text>
             <Text style={styles.text}>Valor de salida: {item.valor_salida}</Text>
@@ -53,39 +52,25 @@ export default function ReportesScreen() {
         </View>
     );
 
-    // Función para generar el archivo de texto y guardarlo en el almacenamiento local
+    // Función para generar el archivo de texto
     const downloadTxtFile = async () => {
         try {
+            // Ruta donde se guardará el archivo (directorio de documentos)
+            const fileUri = FileSystem.documentDirectory + 'lecturas_sensores.txt';
+
             // Crear el contenido del archivo
             let content = 'ID Lectura, Valor de Salida, Fecha y Hora, ID Sensor, ID Usuario\n';
             lecturas.forEach((lectura) => {
                 content += `${lectura.id_lectura}, ${lectura.valor_salida}, ${lectura.fecha_hora}, ${lectura.id_sensor}, ${lectura.id_usuario}\n`;
             });
 
-            // Guardar el archivo en el sistema de archivos de la app
-            const fileUri = FileSystem.documentDirectory + 'lecturas_sensores.txt';
+            // Escribir el archivo en el sistema de archivos local
             await FileSystem.writeAsStringAsync(fileUri, content, { encoding: FileSystem.EncodingType.UTF8 });
-
             setFileUri(fileUri); // Guardar la URI del archivo generado
             Alert.alert('Éxito', `El archivo se ha guardado en: ${fileUri}`);
-
         } catch (error) {
             console.error('Error al guardar el archivo:', error);
             Alert.alert('Error', 'No se pudo guardar el archivo');
-        }
-    };
-
-    // Función para compartir el archivo utilizando expo-sharing
-    const shareFile = async () => {
-        if (fileUri) {
-            try {
-                await Sharing.shareAsync(fileUri); // Compartir el archivo
-            } catch (error) {
-                console.error('Error al compartir el archivo:', error);
-                Alert.alert('Error', 'No se pudo compartir el archivo');
-            }
-        } else {
-            Alert.alert('Error', 'No hay archivo para compartir');
         }
     };
 
@@ -107,10 +92,7 @@ export default function ReportesScreen() {
             )}
             <Button title="Descargar Reporte TXT" onPress={downloadTxtFile} />
             {fileUri && (
-                <View>
-                    <Text style={styles.fileUri}>Archivo guardado en: {fileUri}</Text>
-                    <Button title="Compartir Reporte" onPress={shareFile} />
-                </View>
+                <Text style={styles.fileUri}>Archivo guardado en: {fileUri}</Text>
             )}
         </View>
     );
