@@ -25,6 +25,7 @@ export default function TabsLayout() {
           // tabBarIcon: ({ color }) => <Ionicons name="folder" size={24} color={color} />
         }}
       />
+<<<<<<< HEAD
       <Tabs.Screen 
         name="reporte"
         options={{
@@ -35,5 +36,8 @@ export default function TabsLayout() {
     </Tabs>
     
     
+=======
+    </Tabs>
+>>>>>>> a53ba1561f22a9f82a352d3efa553a878775a4ca
   );
 }
