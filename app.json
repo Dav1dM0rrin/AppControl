@@ -1,12 +1,7 @@
 {
   "expo": {
-<<<<<<< HEAD
     "name": "MotorDC",
     "slug": "MotorDC",
-=======
-    "name": "Motor",
-    "slug": "Motor",
->>>>>>> a53ba1561f22a9f82a352d3efa553a878775a4ca
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -20,12 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-<<<<<<< HEAD
       },
       "package": "com.control.motordc"
-=======
-      }
->>>>>>> a53ba1561f22a9f82a352d3efa553a878775a4ca
     },
     "web": {
       "bundler": "metro",
@@ -42,8 +33,8 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-<<<<<<< HEAD
-      ]
+      ],
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true
@@ -55,13 +46,6 @@
       "eas": {
         "projectId": "3f304ee7-d568-49f7-8643-7480b700d55a"
       }
-=======
-      ],
-      "expo-secure-store"
-    ],
-    "experiments": {
-      "typedRoutes": true
->>>>>>> a53ba1561f22a9f82a352d3efa553a878775a4ca
     }
   }
 }

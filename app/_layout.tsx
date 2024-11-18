@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
@@ -38,18 +37,4 @@ export default function RootLayout() {
     </ThemeProvider>
   );
 }
-=======
-import { useEffect } from 'react';
-import { Stack } from 'expo-router';
-import { enableScreens } from 'react-native-screens';
 
-export default function RootLayout() {
-  useEffect(() => {
-    enableScreens(true);
-  }, []);
-
-  return (
-    <Stack screenOptions={{ headerShown: false }} />
-  );
-}
->>>>>>> a53ba1561f22a9f82a352d3efa553a878775a4ca
